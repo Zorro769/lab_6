@@ -16,15 +16,15 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: "3.9"
 
       - name: Install dependencies
         run: |
-          pip install --upgrade setuptools wheel
+          python -m pip install --upgrade pip setuptools wheel
 
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ secrets.RELEASE_VERSION }}
-          generate_release_notes: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate release tag
+        id: versioning
+        run: |
+          VERSION="v$(date +'%Y.%m.%d')"
+          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Generated tag: $VERSION"
