@@ -27,3 +27,4 @@ jobs:
         with:
           tag_name: ${{ secrets.RELEASE_VERSION }}
           generate_release_notes: true
+          token: ${{ secrets.GITHUB_TOKEN }}
